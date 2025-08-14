@@ -13,3 +13,13 @@ export const generateText = async (prompt: string) => {
         contents: prompt,
     });
 };
+
+export const chat = async (prompt: any[]) => {
+    return ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+            maxOutputTokens: 2000
+        }
+    });
+};
