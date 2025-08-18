@@ -4,6 +4,7 @@ import { getTransactionsById } from "./services/transactionsService";
 import { createTransactionController } from "./controller/createTransaction";
 import { aiResponse } from "./controller/ai";
 import { aiResponseChat } from "./controller/aiChat";
+import { getProductsController } from "./controller/getProducts";
 
 const app = express();
 
@@ -39,6 +40,10 @@ app.post("/ai", (req, res) => {
 
 app.post("/chat", (req, res) => {
   aiResponseChat(req, res);
+});
+
+app.get("/products", (req, res) => {
+  getProductsController(req, res);
 });
 
 export default app;
