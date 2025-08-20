@@ -9,7 +9,7 @@ export const getProductsApi = async (): Promise<Products[]> => {
     const result: { data: Products[] } = await response.json();
 
     return result.data.map((product: Products) => ({
-        id: String(product.id),
+        id: product.id,
         name: product.name,
         price: product.price
     }));
