@@ -15,3 +15,7 @@ type BuyData = {
 export const getPurchases = (): BuyData[] => {
     return [buyData];
 };
+
+export const getPurchasesById = (id: string): BuyData | undefined => {
+    return getPurchases().find(p => p.id === id);
+};
