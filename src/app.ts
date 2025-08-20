@@ -6,6 +6,7 @@ import { aiResponse } from "./controller/ai";
 import { aiResponseChat } from "./controller/aiChat";
 import { getProductsController } from "./controller/getProducts";
 import { checkoutCreateController } from "./controller/checkoutController";
+import { getPurchasesController } from "./controller/purchasesController"; 
 
 const app = express();
 
@@ -49,6 +50,10 @@ app.get("/products", (req, res) => {
 
 app.post("/checkout", (req, res) => {
   checkoutCreateController(req, res);
+});
+
+app.get("/purchases", (req, res) => {
+  getPurchasesController(req, res);
 });
 
 export default app;
