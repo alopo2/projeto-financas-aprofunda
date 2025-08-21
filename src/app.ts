@@ -4,7 +4,7 @@ import { getTransactionsById } from "./services/transactionsService";
 import { createTransactionController } from "./controller/createTransaction";
 import { aiResponse } from "./controller/ai";
 import { aiResponseChat } from "./controller/aiChat";
-import { getProductsController } from "./controller/getProducts";
+import { getProductsApiController } from "./controller/getProducts";
 import { checkoutCreateController } from "./controller/checkoutController";
 import { getPurchasesController, getPurchasesById } from "./controller/purchasesController"; 
 
@@ -44,10 +44,6 @@ app.post("/chat", (req, res) => {
   aiResponseChat(req, res);
 });
 
-app.get("/products", (req, res) => {
-  getProductsController(req, res);
-});
-
 app.post("/checkout", (req, res) => {
   checkoutCreateController(req, res);
 });
@@ -58,6 +54,10 @@ app.get("/purchases", (req, res) => {
 
 app.get("/purchases/:id", (req, res) => {
   getPurchasesById(req, res);
+});
+
+app.get("/products", (req, res) => {
+  getProductsApiController(req, res);
 });
 
 export default app;
