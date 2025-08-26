@@ -11,7 +11,7 @@
     "test:unit": "jest ./tests/unit --config jest.config.js --runInBand --detectOpenHandles --forceExit",
     "test:integration": "jest ./tests/integration --config jest.config.js --runInBand --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage",
-    "start:docker": "docker-compose up -d"
+    "start:docker": "docker compose up -d"
   },
   "keywords": [],
   "author": "",
