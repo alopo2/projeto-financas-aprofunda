@@ -1,19 +1,19 @@
-import { transactions } from '../data'; 
+import { ITransactionRepository } from "../core/repositories/ITransactionRespository"; 
+import { Transaction } from "../core/entities/Transaction";
 
-type Transaction = {
-    id: string;
-    date: string;
-    description: string;
-    amount: number;
-    type: "income" | "expense";
-    category: string;
-};
+export class TransactionService {
 
-export const getTransactionsById = (id: string): Transaction | undefined => {
-  return transactions.find((transaction) => transaction.id === id);
-};
+  constructor(private readonly transactionRepository: ITransactionRepository) {}
 
-export const createTransaction = (transaction: Transaction): Transaction => {
-  transactions.push(transaction);
-  return transaction;
-};
+  async createTransaction(transaction: Transaction): Promise<void> {
+    await this.transactionRepository.createTransaction(transaction);
+  }
+
+  async getTransactionById(id: string): Promise<Transaction | null> {
+    return await this.transactionRepository.getTransactionById(id);
+  }
+
+  async getTransaction(): Promise<Transaction[]> {
+    return await this.transactionRepository.getTransaction();
+  }
+}
