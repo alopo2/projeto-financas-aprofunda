@@ -1,6 +1,5 @@
 import express from "express";
-import { transactions } from "./data";
-import { getTransactionsById } from "./services/transactionsService";
+import { getTransactionsById, getTransactions } from "./controller/getTransactionsController";
 import { createTransactionController } from "./controller/createTransaction";
 import { aiResponse } from "./controller/ai";
 import { aiResponseChat } from "./controller/aiChat";
@@ -17,18 +16,13 @@ app.get("/", (_req, res) => {
 });
 
 
-app.get("/transactions", (_req, res) => {
-  res.json({ transactions });
+app.get("/transactions", (req, res) => {
+  getTransactions(req, res);
 });
 
 
 app.get("/transactions/:id", (req, res) => {
-  const { id } = req.params;
-  const transaction = getTransactionsById(id);
-  if (!transaction) {
-    return res.status(404).json({ message: "Transação não encontrada" });
-  }
-  res.json({ transaction });
+  getTransactionsById(req, res);
 });
 
 

@@ -48,8 +48,16 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Start MongoDB
+      run: npm run start:docker
+
+    - name: Check running containers
+      run: docker ps
+
     - name: Run integration tests
       run: npm run test:integration
+      env:
+        MONGODB_URI: mongodb://admin:password@localhost:27017
 
   deploy:
     runs-on: ubuntu-latest

@@ -1,18 +1,16 @@
 import { Request, Response } from "express"; 
-import { createTransaction } from "../services/transactionsService";
-import { randomUUID } from "crypto";
+import transactionService from "../factories/transactionFactory";
 
 export const createTransactionController = (req: Request, res: Response): void => {
   const { amount, description, type } = req.body;
 
-  const newTransaction = createTransaction({
-    id: randomUUID(),
+  const newTransaction = transactionService.createTransaction({
     date: new Date().toISOString(),
     description,
     amount,
     type,
-    category: "Uncategorized"
+    category: "income"
   });
 
-  res.status(201).json(newTransaction);
+  res.status(201).json({message: 'Transação criada com sucesso'});
 };
