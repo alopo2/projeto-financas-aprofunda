@@ -1,7 +1,5 @@
-import { ObjectId } from "mongoose";
-
-interface ITransaction {
-  _id?: ObjectId;
+export interface ITransaction {
+  id?: string;
   date: string;
   description: string;
   amount: number;
@@ -10,17 +8,24 @@ interface ITransaction {
 }
 
 export class Transaction implements ITransaction {
-  _id?: ObjectId;
+  id?: string;
   date: string;
   description: string;
   amount: number;
   type: "income" | "expense";
   category: string;
 
-  constructor(amount: number, description: string, type: "income" | "expense", category: string, _id?: ObjectId) {
-    this._id = _id;
+  constructor(
+    amount: number,
+    description: string,
+    type: "income" | "expense",
+    category: string,
+    id?: string,
+    date?: string
+  ) {
+    this.id = id;
     this.amount = amount;
-    this.date = new Date().toISOString();
+    this.date = date ?? new Date().toISOString();
     this.description = description;
     this.type = type;
     this.category = category;

@@ -12,5 +12,5 @@ export const createTransactionController = (req: Request, res: Response): void =
     category: "income"
   });
 
-  res.status(201).json({'Transação criada': newTransaction});
+  res.status(201).json({message: 'Transação criada com sucesso'});
 };

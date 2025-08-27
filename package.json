@@ -25,6 +25,7 @@
     "@types/node": "^24.0.10",
     "@types/supertest": "^6.0.3",
     "@types/uuid": "^10.0.0",
+    "@types/mongoose": "^5.11.96",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
@@ -33,7 +34,6 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.11.96",
     "cross-env": "^7.0.3",
     "jest": "^30.0.4",
     "nock": "^14.0.10",

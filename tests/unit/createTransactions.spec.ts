@@ -1,7 +1,7 @@
-import { createTransaction } from "../../src/services/transactionsService";
+import { TransactionService } from "../../src/services/transactionsService";
 
 describe("createTransaction", () => {
-    it("should create a new transaction", () => {
+    it("should create a new transaction", async () => {
         const newTransaction = {
             id: "1",
             date: new Date().toISOString(),
@@ -11,8 +11,13 @@ describe("createTransaction", () => {
             category: "Uncategorized"
         };
 
-        const createdTransaction = createTransaction(newTransaction);
+        const mockRepository = {
+            createTransaction: jest.fn().mockResolvedValue(newTransaction)
+        };
 
-        expect(createdTransaction).toEqual(newTransaction);
+        const transactionService = new TransactionService(mockRepository as any);
+
+        const createdTransaction = await transactionService.createTransaction(newTransaction);
+        expect(mockRepository.createTransaction).toHaveBeenCalledWith(newTransaction);
     });
 });
