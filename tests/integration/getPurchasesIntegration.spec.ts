@@ -10,6 +10,7 @@ describe("GET /purchases", () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
+    await mongoose.disconnect();
   });
   
   it("should return all purchases", async () => {
