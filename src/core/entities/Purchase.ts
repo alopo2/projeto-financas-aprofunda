@@ -1,23 +1,35 @@
 export interface Purchases {
   id?: string;
-  name: string;
-  login: string;
-  email: string;
-  password: string;
+  date: string;
+  total: number;
+  items: Array<{
+      name: string;
+      productId: string;
+      quantity: number;
+      price: number;
+  }>;
 }
 
 export class Purchase {
   public readonly id?: string;
-  public name: string;
-  public login: string;
-  public email: string;
-  public password: string;
+  public date: string;
+  public total: number;
+  public items: Array<{
+      name: string;
+      productId: string;
+      quantity: number;
+      price: number;
+  }>;
 
-  constructor(name: string, login: string, email: string, password: string, id?: string) {
+  constructor(date: string, total: number, items: Array<{
+      name: string;
+      productId: string;
+      quantity: number;
+      price: number;
+  }>, id?: string) {
     this.id = id;
-    this.name = name;
-    this.login = login;
-    this.email = email;
-    this.password = password;
+    this.date = date;
+    this.total = total;
+    this.items = items;
   }
 }

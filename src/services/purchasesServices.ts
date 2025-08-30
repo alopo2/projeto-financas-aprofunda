@@ -1,21 +1,18 @@
-import { buyData } from "../buyData";
+import { IPurchaseRepository } from "../core/repositories/IPurchaseRespository"; 
+import { Purchase } from "../core/entities/Purchase";
 
-type BuyData = {
-    id: string;
-    date: string;
-    total: number;
-    items: Array<{
-        name: string;
-        productId: string;
-        quantity: number;
-        price: number;
-    }>;
-};
+export class PurchaseService {
+    constructor(private repository: IPurchaseRepository) {}
 
-export const getPurchases = (): BuyData[] => {
-    return [buyData];
-};
+    async createPurchase(purchase: Purchase): Promise<void> {
+        await this.repository.createPurchase(purchase);
+    }
 
-export const getPurchasesById = (id: string): BuyData | undefined => {
-    return getPurchases().find(p => p.id === id);
-};
+    async getPurchases(): Promise<Purchase[]> {
+        return await this.repository.getPurchases();
+    }
+
+    async getPurchasesById(id: string): Promise<Purchase | null> {
+        return await this.repository.getPurchaseById(id);
+    }
+}

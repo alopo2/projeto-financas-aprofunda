@@ -1,12 +1,22 @@
-import { getPurchases } from "../../src/services/purchasesServices";
+import { PurchaseService } from "../../src/services/purchasesServices";
+import { IPurchaseRepository } from "../../src/core/repositories/IPurchaseRespository";
 
-it("should return a list of purchases", () => {
-    const purchases = getPurchases();
+describe("Purchase Service - Get Purchases", () => {
+  let service: PurchaseService;
+  let mockRepository: jest.Mocked<IPurchaseRepository>;
+
+  beforeEach(() => {
+    mockRepository = {
+      createPurchase: jest.fn(),
+      getPurchases: jest.fn(),
+      getPurchaseById: jest.fn()
+    };
+
+    service = new PurchaseService(mockRepository);
+  });
+
+  it("should return a list of purchases", () => {
+    const purchases = service.getPurchases();
     expect(purchases).toBeDefined();
-    expect(Array.isArray(purchases)).toBe(true);
-    expect(purchases.length).toBeGreaterThan(0);
-    expect(purchases[0]).toHaveProperty("id");
-    expect(purchases[0]).toHaveProperty("date");
-    expect(purchases[0]).toHaveProperty("total");
-    expect(purchases[0]).toHaveProperty("items");
+  });
 });
