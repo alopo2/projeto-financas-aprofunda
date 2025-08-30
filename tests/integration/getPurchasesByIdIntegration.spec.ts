@@ -1,17 +1,17 @@
 import request from "supertest";
 import app from "../../src/app";
 import { purchaseModel } from "../../src/database/mongoosePurchaseModel";
-import connectToMongo from "../../src/database/connectToMongo";
 import mongoose from "mongoose";
 
 describe("GET /purchases/:id", () => {
-   beforeAll(async () => {
-    await connectToMongo();
-  });
-
-  afterAll(async () => {
-    await mongoose.connection.close();
-  });
+    beforeAll(async () => {
+       await mongoose.connect(process.env.MONGO_URI as string)
+     });
+   
+     afterAll(async () => {
+       await mongoose.connection.close();
+       await mongoose.disconnect();
+     });
   
   it("should return a purchase by id", async () => {
     const created = await purchaseModel.create({
