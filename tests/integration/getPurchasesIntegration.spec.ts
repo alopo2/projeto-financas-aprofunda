@@ -1,11 +1,10 @@
 import request from "supertest";
 import app from "../../src/app";
-import connectToMongo from "../../src/database/connectToMongo";
 import mongoose from "mongoose";
 
 describe("GET /purchases", () => {
    beforeAll(async () => {
-    await connectToMongo();
+    await mongoose.connect(process.env.MONGO_URI as string)
   });
 
   afterAll(async () => {
